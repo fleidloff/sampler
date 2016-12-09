@@ -41,6 +41,8 @@ while True:
                 play(sounds[0])
             if event.key == pygame.K_2:
                 play(sounds[1])
+            if event.key == pygame.K_3:
+                play(sounds[3])
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_l:
                 loop = False
