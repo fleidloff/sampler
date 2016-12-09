@@ -20,7 +20,7 @@ def play (sound):
     sound.play(-1 if loop else 0)
 
 pygame.init()
-pygame.display.set_mode((1, 1))
+pygame.display.set_mode((1, 1), pygame.HWSURFACE | pygame.DOUBLEBUF)
 pygame.mixer.init(44100, -16, 2, 2048)
 sounds = loadSounds("./sounds/")
 loop = False
