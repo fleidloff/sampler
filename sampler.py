@@ -4,11 +4,11 @@ from os.path import isfile, join
 
 
 
-# load sounds function
-# put sounds in array
-# load from sd / zoom
-# loop yes / no 
-# load from ditto?
+# copy songs with function / max 8 songs! 
+# copy songs on keyboard clicks (with usb mounting)
+# stop loops
+# load all 8 songs
+# copy songs as pi user (why no access to zoom files?)
 
 
 
@@ -32,7 +32,6 @@ while True:
             pygame.quit()
             quit()
         if event.type == pygame.KEYDOWN:
-            print event.key
             if event.key == pygame.K_l:
                 loop = True
             if event.key == pygame.K_0:
