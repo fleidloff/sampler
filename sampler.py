@@ -20,6 +20,7 @@ def play (sound):
     sound.play(-1 if loop else 0)
 
 pygame.init()
+pygame.display.set_mode((1, 1))
 pygame.mixer.init(44100, -16, 2, 2048)
 sounds = loadSounds("./sounds/")
 loop = False
@@ -31,6 +32,7 @@ while True:
             pygame.quit()
             quit()
         if event.type == pygame.KEYDOWN:
+            print event.key
             if event.key == pygame.K_l:
                 loop = True
             if event.key == pygame.K_0:
