@@ -1,21 +1,28 @@
 import pygame
+from os import listdir
+from os.path import isfile, join
 
-pygame.init()
-pygame.mixer.init(44100, -16, 2, 2048)
 
 
-crash = pygame.mixer.Sound("crash.wav")
-beat = pygame.mixer.Sound("beat.wav")
 # load sounds function
 # put sounds in array
 # load from sd / zoom
 # loop yes / no 
 # load from ditto?
 
-loop = False
+
+
+def loadSounds(soundsPath):
+    soundFiles = [join(soundsPath, f) for f in listdir(soundsPath) if isfile(join(soundsPath, f))]
+    return [pygame.mixer.Sound(f) for f in soundFiles]   
 
 def play (sound):
     sound.play(-1 if loop else 0)
+
+pygame.init()
+pygame.mixer.init(44100, -16, 2, 2048)
+sounds = loadSounds("./sounds/")
+loop = False
 
 while True:
     for event in pygame.event.get():
@@ -29,9 +36,9 @@ while True:
             if event.key == pygame.K_0:
                 pygame.mixer.stop()    
             if event.key == pygame.K_1:
-                play(crash)
+                play(sounds[0])
             if event.key == pygame.K_2:
-                play(beat)
+                play(sounds[1])
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_l:
                 loop = False
