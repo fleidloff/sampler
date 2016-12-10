@@ -11,7 +11,7 @@ def play (sound):
     sound.play(-1 if loop else 0)
 
 def copySamples():
-    call(["./mount-usb.sh"])
+    call(["bash", "mount-usb.sh"])
 
 pygame.init()
 pygame.display.set_mode((1, 1), pygame.HWSURFACE | pygame.DOUBLEBUF)
@@ -33,6 +33,7 @@ while True:
                 if stop:
                     print "copy all files"
                     copySamples()
+                    loadSounds()
             if event.key == pygame.K_0:
                 pygame.mixer.stop()   
                 stop = True 
