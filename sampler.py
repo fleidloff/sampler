@@ -12,7 +12,7 @@ def play (sound):
     sound.play(-1 if loop else 0)
 
 def copySamples():
-    system("bash mound-usb.sh")
+    system("bash mount-usb.sh")
 
 pygame.init()
 pygame.display.set_mode((1, 1), pygame.HWSURFACE | pygame.DOUBLEBUF)
