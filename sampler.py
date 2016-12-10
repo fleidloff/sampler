@@ -12,7 +12,7 @@ def play (sound):
     sound.play(-1 if loop else 0)
 
 def copySamples():
-    system("./mound-usb.sh")
+    system("bash mound-usb.sh")
 
 pygame.init()
 pygame.display.set_mode((1, 1), pygame.HWSURFACE | pygame.DOUBLEBUF)
@@ -43,7 +43,17 @@ while True:
             if event.key == pygame.K_2:
                 play(sounds[1])
             if event.key == pygame.K_3:
+                play(sounds[2])
+            if event.key == pygame.K_4:
                 play(sounds[3])
+            if event.key == pygame.K_5:
+                play(sounds[4])
+            if event.key == pygame.K_6:
+                play(sounds[5])
+            if event.key == pygame.K_7:
+                play(sounds[6])
+            if event.key == pygame.K_8:
+                play(sounds[7])
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_l:
                 loop = False
