@@ -6,6 +6,7 @@ import os
 def loadSounds():
     soundsPath = "./sounds/"
     soundFiles = [join(soundsPath, f) for f in listdir(soundsPath) if isfile(join(soundsPath, f))]
+    print soundFiles
     return [pygame.mixer.Sound(f) for f in soundFiles]   
 
 def play (sound):
