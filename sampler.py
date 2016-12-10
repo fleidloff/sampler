@@ -1,7 +1,7 @@
 import pygame
-from os import listdir
+from os import listdir, system
 from os.path import isfile, join
-import subprocess
+import os
 
 def loadSounds():
     soundsPath = "./sounds/"
@@ -12,8 +12,7 @@ def play (sound):
     sound.play(-1 if loop else 0)
 
 def copySamples():
-    print subprocess.Popen("ls ./", shell=True, stdout=subprocess.PIPE).stdout.read()
-    print subprocess.Popen("bash mound-usb.sh", shell=True, stdout=subprocess.PIPE).stdout.read()
+    system("./mound-usb.sh")
 
 pygame.init()
 pygame.display.set_mode((1, 1), pygame.HWSURFACE | pygame.DOUBLEBUF)
