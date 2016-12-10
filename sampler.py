@@ -13,7 +13,7 @@ def play (sound):
 
 def copySamples():
     print subprocess.Popen("ls ./", shell=True, stdout=subprocess.PIPE).stdout.read()
-    print subprocess.Popen("sudo ./mound-usb.sh", shell=True, stdout=subprocess.PIPE).stdout.read()
+    print subprocess.Popen("bash mound-usb.sh", shell=True, stdout=subprocess.PIPE).stdout.read()
 
 pygame.init()
 pygame.display.set_mode((1, 1), pygame.HWSURFACE | pygame.DOUBLEBUF)
