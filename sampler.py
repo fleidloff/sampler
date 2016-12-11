@@ -5,6 +5,7 @@ import os
 
 def loadSounds():
     soundsPath = "./sounds/"
+    soundFiles = [None] * 8
     soundFiles = [join(soundsPath, f) for f in listdir(soundsPath) if isfile(join(soundsPath, f))]
     soundFiles.sort()
     print soundFiles
@@ -16,7 +17,7 @@ def play (sounds, soundId):
     if stop:
         system("bash copy-1-file.sh " + `soundId + 1`)
         sounds[soundId] = pygame.mixer.Sound(join(soundsPath, `soundId + 1` + ".wav"))
-    else:
+    elif sounds[soundId] is not None:
         sounds[soundId].play(-1 if loop else 0)
 
 def copySamples():
