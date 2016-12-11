@@ -9,8 +9,11 @@ def loadSounds():
     print soundFiles
     return [pygame.mixer.Sound(f) for f in soundFiles]   
 
-def play (sound):
-    sound.play(-1 if loop else 0)
+def play (sounds, soundId):
+    if stop:
+        system("bash copy-1-file.sh " + `soundId + 1`)
+    else:
+        sounds[soundId].play(-1 if loop else 0)
 
 def copySamples():
     system("bash mount-usb.sh")
@@ -41,21 +44,21 @@ while True:
                 pygame.mixer.stop()   
                 stop = True 
             if event.key == pygame.K_1:
-                play(sounds[0])
+                play(sounds, 0)
             if event.key == pygame.K_2:
-                play(sounds[1])
+                play(sounds, 1)
             if event.key == pygame.K_3:
-                play(sounds[2])
+                play(sounds, 2)
             if event.key == pygame.K_4:
-                play(sounds[3])
+                play(sounds, 3)
             if event.key == pygame.K_5:
-                play(sounds[4])
+                play(sounds, 4)
             if event.key == pygame.K_6:
-                play(sounds[5])
+                play(sounds, 5)
             if event.key == pygame.K_7:
-                play(sounds[6])
+                play(sounds, 6)
             if event.key == pygame.K_8:
-                play(sounds[7])
+                play(sounds, 7)
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_l:
                 loop = False
