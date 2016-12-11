@@ -46,7 +46,7 @@ while True:
                 if stop:
                     print "copy all files"
                     copySamples()
-                    loadSounds()
+                    sounds = loadSounds()
             if event.key == pygame.K_0:
                 pygame.mixer.stop()   
                 stop = True 
