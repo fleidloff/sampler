@@ -16,14 +16,21 @@ def loadSounds():
         result.append(None)
     return result
 
-def play (sounds, soundId):
+def play (sounds, soundId, looping):
     soundsPath = "./sounds/"
     if stop:
         system("bash copy-1-file.sh " + `soundId + 1`)
         print "assign new song to " + `soundId + 1`
         sounds[soundId] = pygame.mixer.Sound(join(soundsPath, `soundId + 1` + ".wav"))
     elif sounds[soundId] is not None:
-        sounds[soundId].play(-1 if loop else 0)
+        if loop:
+            if looping[soundId] is not None:
+                looping[soundId].stop()
+                looping[soundId] = None
+            else:
+                looping[soundId] = sounds[soundId].play(-1)
+        else:
+            sounds[soundId].play(0)
 
 def copySamples():
     system("bash mount-usb.sh")
@@ -33,6 +40,7 @@ pygame.mixer.init()
 pygame.init()
 pygame.display.set_mode((1, 1), pygame.HWSURFACE | pygame.DOUBLEBUF)
 sounds = loadSounds()
+looping = [None] * 8
 
 while True:
     for event in pygame.event.get():
@@ -48,24 +56,25 @@ while True:
                     copySamples()
                     sounds = loadSounds()
             if event.key == pygame.K_0:
-                pygame.mixer.stop()   
+                pygame.mixer.stop() 
+                looping = [None] * 8  
                 stop = True 
             if event.key == pygame.K_1:
-                play(sounds, 0)
+                play(sounds, 0, looping)
             if event.key == pygame.K_2:
-                play(sounds, 1)
+                play(sounds, 1, looping)
             if event.key == pygame.K_3:
-                play(sounds, 2)
+                play(sounds, 2, looping)
             if event.key == pygame.K_4:
-                play(sounds, 3)
+                play(sounds, 3, looping)
             if event.key == pygame.K_5:
-                play(sounds, 4)
+                play(sounds, 4, looping)
             if event.key == pygame.K_6:
-                play(sounds, 5)
+                play(sounds, 5, looping)
             if event.key == pygame.K_7:
-                play(sounds, 6)
+                play(sounds, 6, looping)
             if event.key == pygame.K_8:
-                play(sounds, 7)
+                play(sounds, 7, looping)
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_l:
                 loop = False
