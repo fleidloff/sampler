@@ -3,6 +3,9 @@ from os import listdir, system
 from os.path import isfile, join
 import os
 
+loop = False
+stop = False
+
 def loadSounds():
     soundsPath = "./sounds/"
     soundFiles = [None] * 8
@@ -16,6 +19,7 @@ def play (sounds, soundId):
     soundsPath = "./sounds/"
     if stop:
         system("bash copy-1-file.sh " + `soundId + 1`)
+        print "assign new song to " + `soundId + 1`
         sounds[soundId] = pygame.mixer.Sound(join(soundsPath, `soundId + 1` + ".wav"))
     elif sounds[soundId] is not None:
         sounds[soundId].play(-1 if loop else 0)
@@ -28,9 +32,6 @@ pygame.mixer.init()
 pygame.init()
 pygame.display.set_mode((1, 1), pygame.HWSURFACE | pygame.DOUBLEBUF)
 sounds = loadSounds()
-
-loop = False
-stop = False
 
 while True:
     for event in pygame.event.get():
