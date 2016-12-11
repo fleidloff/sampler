@@ -3,15 +3,16 @@ from os import listdir, system
 from os.path import isfile, join
 import os
 
+soundsPath = "./sounds/"
 def loadSounds():
-    soundsPath = "./sounds/"
     soundFiles = [join(soundsPath, f) for f in listdir(soundsPath) if isfile(join(soundsPath, f))]
     print soundFiles
-    return [pygame.mixer.Sound(f) for f in soundFiles]   
+    return [pygame.mixer.Sound(f) for f in soundFiles.reverse()]   
 
 def play (sounds, soundId):
     if stop:
         system("bash copy-1-file.sh " + `soundId + 1`)
+        sounds[soundId] = pygame.mixer.Sound(join(soundsPath, `soundId + 1` + ".wav"))
     else:
         sounds[soundId].play(-1 if loop else 0)
 
