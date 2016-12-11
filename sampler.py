@@ -8,11 +8,12 @@ stop = False
 
 def loadSounds():
     soundsPath = "./sounds/"
-    soundFiles = [None] * 8
     soundFiles = [join(soundsPath, f) for f in listdir(soundsPath) if isfile(join(soundsPath, f))]
     soundFiles.sort()
     print soundFiles
     result = [pygame.mixer.Sound(f) for f in soundFiles]
+    while len(result) < 8:
+        result.append(None)
     return result
 
 def play (sounds, soundId):
