@@ -15,9 +15,10 @@ def play (sound):
 def copySamples():
     system("bash mount-usb.sh")
 
+pygame.mixer.pre_init(44100, -16, 2, 4096)
+pygame.mixer.init()
 pygame.init()
 pygame.display.set_mode((1, 1), pygame.HWSURFACE | pygame.DOUBLEBUF)
-pygame.mixer.init(44100, -16, 2, 2048)
 sounds = loadSounds()
 
 loop = False
